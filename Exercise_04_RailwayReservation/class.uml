@@ -1,0 +1,64 @@
+@startuml
+
+class Train {
+  +trainID: String
+  +trainName: String
+  +source: String
+  +destination: String
+  +departureTime: Date
+  +availableSeats: int
+  +checkAvailability(): Boolean
+  +updateSchedule(): void
+  +viewTrainDetails(): void
+}
+
+class Reservation {
+  +reservationID: String
+  +passenger: Passenger
+  +train: Train
+  +reservationDate: Date
+  +status: String
+  +createReservation(): void
+  +cancelReservation(): void
+  +viewReservationDetails(): void
+}
+
+class Passenger {
+  +passengerID: String
+  +name: String
+  +email: String
+  +phone: String
+  +address: String
+  +createAccount(): void
+  +searchTrains(): List<Train>
+  +viewReservationHistory(): List<Reservation>
+}
+
+class Ticket {
+  +ticketID: String
+  +reservation: Reservation
+  +seatNumber: String
+  +ticketType: String
+  +price: Float
+  +generateTicket(): void
+  +checkTicketStatus(): String
+  +updateTicketDetails(): void
+}
+
+class Payment {
+  +paymentID: String
+  +paymentDate: Date
+  +amount: Float
+  +paymentMethod: String
+  +status: String
+  +processPayment(): void
+  +generateInvoice(): void
+  +verifyPayment(): Boolean
+}
+
+Train "1" -- "*" Reservation : has
+Reservation "1" -- "1" Passenger : linked to
+Reservation "*" -- "*" Ticket : contains
+Reservation "1" -- "1" Payment : associated with
+
+@enduml

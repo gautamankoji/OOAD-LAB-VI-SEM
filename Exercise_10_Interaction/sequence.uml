@@ -1,0 +1,17 @@
+@startuml
+
+actor Customer
+participant "Reservation System" as RS
+participant Train
+participant "Payment Gateway" as PG
+participant Ticket
+
+Customer -> RS : Request to Book Ticket
+RS -> Train : Check Seat Availability
+Train -> RS : Respond with Availability
+RS -> PG : Process Payment
+PG -> RS : Payment Successful
+RS -> Ticket : Generate Ticket
+Ticket -> Customer : Provide Ticket
+
+@enduml

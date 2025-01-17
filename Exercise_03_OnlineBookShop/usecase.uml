@@ -1,0 +1,29 @@
+@startuml
+
+actor Customer
+actor Admin
+
+usecase "Browse Books" as UC1
+usecase "View Book Details" as UC2
+usecase "Add Book to Cart" as UC3
+usecase "Place Order" as UC4
+usecase "Make Payment" as UC5
+usecase "Track Order" as UC6
+usecase "Manage Books" as UC7
+usecase "Process Order" as UC8
+usecase "Manage Payments" as UC9
+
+Customer -- UC1
+Customer -- UC2
+Customer -- UC3
+Customer -- UC4
+Customer -- UC5
+Customer -- UC6
+
+Admin -- UC7
+Admin -- UC8
+Admin -- UC9
+
+UC4 --> UC3 : includes
+
+@enduml

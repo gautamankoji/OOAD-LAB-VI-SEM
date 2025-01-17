@@ -1,0 +1,63 @@
+@startuml
+
+class Account {
+  +accountNumber: String
+  +balance: Float
+  +accountType: String
+  +dateOpened: Date
+  +status: String
+  +checkBalance(): Float
+  +deposit(amount: Float): void
+  +withdraw(amount: Float): void
+  +transferFunds(destinationAccount: Account, amount: Float): void
+}
+
+class Transaction {
+  +transactionID: String
+  +transactionDate: Date
+  +transactionType: String
+  +amount: Float
+  +account: Account
+  +processTransaction(): void
+  +reverseTransaction(): void
+  +getTransactionHistory(): List<Transaction>
+}
+
+class Customer {
+  +customerID: String
+  +name: String
+  +address: String
+  +email: String
+  +phoneNumber: String
+  +createAccount(): Account
+  +applyForLoan(amount: Float, duration: int): Loan
+  +viewAccountDetails(account: Account): void
+}
+
+class Bank {
+  +bankName: String
+  +branchCode: String
+  +location: String
+  +addAccount(account: Account): void
+  +closeAccount(account: Account): void
+  +manageLoans(loan: Loan): void
+}
+
+class Loan {
+  +loanID: String
+  +loanAmount: Float
+  +interestRate: Float
+  +duration: int
+  +status: String
+  +approveLoan(): void
+  +payLoanInstallment(amount: Float): void
+  +checkLoanStatus(): String
+}
+
+Customer "1" -- "*" Account : owns
+Account "1" -- "*" Transaction : performs
+Bank "1" -- "*" Account : manages
+Customer "1" -- "*" Loan : applies for
+Loan "1" -- "*" Transaction : involves
+
+@enduml

@@ -1,0 +1,24 @@
+@startuml
+
+[*] --> Registered
+
+Registered --> Admitted : Patient Admitted
+Admitted --> UnderTreatment : Treatment Starts
+UnderTreatment --> Discharged : Treatment Completed
+Admitted --> Transferred : Patient Transferred
+
+state DoctorStates {
+  [*] --> Available
+  Available --> InTreatment : Doctor Starts Treatment
+  InTreatment --> Available : Treatment Finished
+  Available --> OnLeave : Doctor On Leave
+}
+
+state AppointmentStates {
+  [*] --> Scheduled
+  Scheduled --> InProgress : Appointment Starts
+  InProgress --> Completed : Appointment Finished
+  Scheduled --> Canceled : Appointment Canceled
+}
+
+@enduml

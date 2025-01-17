@@ -1,0 +1,25 @@
+@startuml
+
+actor Member
+actor Librarian
+
+usecase "Search Book" as UC1
+usecase "Borrow Book" as UC2
+usecase "Return Book" as UC3
+usecase "Pay Fines" as UC4
+usecase "Add Book" as UC5
+usecase "Remove Book" as UC6
+usecase "Manage Transactions" as UC7
+
+Member -- UC1
+Member -- UC2
+Member -- UC3
+Member -- UC4
+Librarian -- UC5
+Librarian -- UC6
+Librarian -- UC7
+
+UC7 --> UC2 : includes
+UC7 --> UC3 : includes
+
+@enduml

@@ -1,0 +1,61 @@
+@startuml
+
+class Book {
+  +bookID: String
+  +title: String
+  +author: String
+  +price: Float
+  +category: String
+  +availability: Boolean
+  +checkAvailability(): Boolean
+  +updateStock(): void
+  +applyDiscount(): void
+}
+
+class Customer {
+  +customerID: String
+  +name: String
+  +address: String
+  +email: String
+  +phone: String
+  +createAccount(): void
+  +updateProfile(): void
+  +viewOrderHistory(): void
+}
+
+class Order {
+  +orderID: String
+  +orderDate: Date
+  +status: String
+  +totalAmount: Float
+  +createOrder(): void
+  +updateStatus(): void
+  +calculateTotalAmount(): Float
+}
+
+class ShoppingCart {
+  +cartID: String
+  +items: List<Book>
+  +totalAmount: Float
+  +addItem(): void
+  +removeItem(): void
+  +calculateCartTotal(): Float
+}
+
+class Payment {
+  +paymentID: String
+  +paymentDate: Date
+  +amount: Float
+  +paymentMethod: String
+  +status: String
+  +processPayment(): void
+  +validatePayment(): Boolean
+  +generateInvoice(): void
+}
+
+Customer "1" -- "*" Order : places
+Order "*" -- "*" Book : contains
+ShoppingCart "1" o-- "*" Book : contains
+Order "1" -- "1" Payment : associated with
+
+@enduml

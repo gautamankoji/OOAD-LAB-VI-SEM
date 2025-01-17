@@ -1,0 +1,21 @@
+@startuml
+
+[*] --> Available
+
+Available --> CheckedOut : Book Borrowed
+CheckedOut --> Returned : Book Returned
+CheckedOut --> Overdue : Due Date Passed
+Available --> Reserved : Book Reserved
+Reserved --> CheckedOut : Book Borrowed by Member
+Reserved --> Available : Reservation Cancelled
+Returned --> Available : Book Placed Back in Library
+
+state MemberStates {
+  [*] --> Registered
+  Registered --> Active : Account Activated
+  Active --> Suspended : Policy Violation (e.g., Overdue Books)
+  Suspended --> Active : Suspension Lifted
+  Active --> Deregistered : Member Deregistered
+}
+
+@enduml

@@ -1,0 +1,41 @@
+@startuml
+
+class Book {
+  +bookID: String
+  +title: String
+  +author: String
+  +category: String
+  +availability: Boolean
+  +checkAvailability(): Boolean
+  +reserve(): void
+  +issueBook(): void
+}
+
+class Member {
+  +memberID: String
+  +name: String
+  +address: String
+  +email: String
+  +borrowBook(): void
+  +returnBook(): void
+}
+
+class Transaction {
+  +transactionID: String
+  +borrowDate: Date
+  +returnDate: Date
+  +createTransaction(): void
+  +closeTransaction(): void
+}
+
+class Librarian {
+  +addBook(): void
+  +removeBook(): void
+  +manageTransactions(): void
+}
+
+Book "1" -- "*" Transaction : has
+Member "1" -- "*" Transaction : performs
+Librarian --|> Member : inherits
+
+@enduml

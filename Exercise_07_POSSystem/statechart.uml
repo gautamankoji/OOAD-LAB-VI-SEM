@@ -1,0 +1,22 @@
+@startuml
+
+[*] --> Idle
+
+Idle --> ProductScanned : Product Scanned
+ProductScanned --> PaymentProcessing : Proceed to Payment
+ProductScanned --> CancelAbort : Cancel Transaction
+
+PaymentProcessing --> TransactionComplete : Payment Successful
+PaymentProcessing --> CancelAbort : Cancel Payment Processing
+
+CancelAbort --> Idle : Abort Transaction
+
+state PaymentProcessing {
+  [*] --> CreditCardVerification
+  [*] --> CashPayment
+
+  CreditCardVerification --> TransactionComplete : Payment Verified
+  CashPayment --> TransactionComplete : Cash Payment Confirmed
+}
+
+@enduml

@@ -1,0 +1,29 @@
+@startuml
+
+actor Passenger
+actor Admin
+
+usecase "Search Trains" as UC1
+usecase "Book Ticket" as UC2
+usecase "Make Payment" as UC3
+usecase "Cancel Reservation" as UC4
+usecase "View Reservation Details" as UC5
+usecase "Add Train" as UC6
+usecase "Modify Train Schedule" as UC7
+usecase "View Reservations" as UC8
+usecase "Manage Payments" as UC9
+
+Passenger -- UC1
+Passenger -- UC2
+Passenger -- UC3
+Passenger -- UC4
+Passenger -- UC5
+
+Admin -- UC6
+Admin -- UC7
+Admin -- UC8
+Admin -- UC9
+
+UC2 --> UC3 : includes
+
+@enduml

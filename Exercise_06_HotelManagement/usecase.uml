@@ -1,0 +1,42 @@
+@startuml
+
+actor Customer
+actor "Hotel Staff" as Staff
+actor Admin
+
+usecase "Book Room" as UC1
+usecase "Cancel Reservation" as UC2
+usecase "Check In" as UC3
+usecase "Check Out" as UC4
+usecase "Make Payment" as UC5
+usecase "View Reservation" as UC6
+usecase "Assign Room" as UC7
+usecase "Manage Reservations" as UC8
+usecase "Process Payment" as UC9
+usecase "Add Room" as UC10
+usecase "Add Staff" as UC11
+usecase "Update Room Details" as UC12
+usecase "View Reservations" as UC13
+
+Customer -- UC1
+Customer -- UC2
+Customer -- UC3
+Customer -- UC4
+Customer -- UC5
+Customer -- UC6
+
+Staff -- UC7
+Staff -- UC8
+Staff -- UC3
+Staff -- UC4
+Staff -- UC9
+
+Admin -- UC10
+Admin -- UC11
+Admin -- UC12
+Admin -- UC13
+
+UC1 --> UC7 : includes
+UC5 --> UC9 : includes
+
+@enduml
